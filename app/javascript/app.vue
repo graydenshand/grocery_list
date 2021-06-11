@@ -3,7 +3,7 @@
     <h1 class="text-6xl font-black text-green-600 leading-none mb-10 pt-5 text-center">Grocery List</h1>
     <form class="relative mb-10" v-on:submit.prevent="createItem">
       <input type="text" class="w-full p-2 bg-white shadow focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:outline-none focus:border-0" placeholder="Klondike Bars" v-model="itemInput" />
-      <button class="absolute right-0 p-2 bg-blue-500 font-semibold text-white shadow focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:outline-none active:bg-blue-700" type="submit">Add item</button>
+      <button class="absolute right-0 top-0 p-2 bg-blue-500 font-semibold text-white shadow focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:outline-none active:bg-blue-700" type="submit">Add item</button>
     </form>
     <div v-if="loading" class="flex justify-center">
       <svg class="animate-spin -ml-1 mr-3 h-5 w-5 text-black" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
