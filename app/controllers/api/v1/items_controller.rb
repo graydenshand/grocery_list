@@ -2,7 +2,7 @@ class Api::V1::ItemsController < ApplicationController
 
 	# GET /items
 	def index
-		@items = Item.all
+		@items = Item.order(created_at: :desc)
 		render json: @items, status: 200
 	end
 
