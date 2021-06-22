@@ -1,9 +1,9 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  name: Klondike bars
-  quantity: 1
+  action: MyString
+  item: MyString
 
 two:
-  name: Cokes (12 pack)
-  quantity: 1
+  action: MyString
+  item: MyString

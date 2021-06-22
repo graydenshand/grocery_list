@@ -12,7 +12,7 @@
       </svg>
     </div>
     <ul> 
-      <item v-for="(item, index) in items" :item="item" :index="index" v-on:increment="incrementItem" v-on:decrement="decrementItem"></item>
+      <item v-for="(item, index) in items" :item="item" :index="index" v-bind:key="item.id" v-on:increment="incrementItem" v-on:decrement="decrementItem"></item>
     </ul>
   </div>
 </template>
