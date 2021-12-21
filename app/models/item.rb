@@ -1,4 +1,5 @@
-class Item < ApplicationRecord
+# frozen_string_literal: true
 
-	validates :name, presence: true
+class Item < ApplicationRecord
+  validates :name, presence: true
 end

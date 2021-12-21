@@ -1,41 +1,47 @@
-require "application_system_test_case"
+# frozen_string_literal: true
 
-class Api::V1::ItemsTest < ApplicationSystemTestCase
-  setup do
-    @api_v1_item = api_v1_items(:one)
-  end
+require 'application_system_test_case'
 
-  test "visiting the index" do
-    visit api_v1_items_url
-    assert_selector "h1", text: "Api/V1/Items"
-  end
+module Api
+  module V1
+    class ItemsTest < ApplicationSystemTestCase
+      setup do
+        @api_v1_item = api_v1_items(:one)
+      end
 
-  test "creating a Item" do
-    visit api_v1_items_url
-    click_on "New Api/V1/Item"
+      test 'visiting the index' do
+        visit api_v1_items_url
+        assert_selector 'h1', text: 'Api/V1/Items'
+      end
 
-    click_on "Create Item"
+      test 'creating a Item' do
+        visit api_v1_items_url
+        click_on 'New Api/V1/Item'
 
-    assert_text "Item was successfully created"
-    click_on "Back"
-  end
+        click_on 'Create Item'
 
-  test "updating a Item" do
-    visit api_v1_items_url
-    click_on "Edit", match: :first
+        assert_text 'Item was successfully created'
+        click_on 'Back'
+      end
 
-    click_on "Update Item"
+      test 'updating a Item' do
+        visit api_v1_items_url
+        click_on 'Edit', match: :first
 
-    assert_text "Item was successfully updated"
-    click_on "Back"
-  end
+        click_on 'Update Item'
 
-  test "destroying a Item" do
-    visit api_v1_items_url
-    page.accept_confirm do
-      click_on "Destroy", match: :first
+        assert_text 'Item was successfully updated'
+        click_on 'Back'
+      end
+
+      test 'destroying a Item' do
+        visit api_v1_items_url
+        page.accept_confirm do
+          click_on 'Destroy', match: :first
+        end
+
+        assert_text 'Item was successfully destroyed'
+      end
     end
-
-    assert_text "Item was successfully destroyed"
   end
 end
