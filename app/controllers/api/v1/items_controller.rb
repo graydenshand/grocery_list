@@ -4,75 +4,46 @@ module Api
   module V1
     class ItemsController < ApplicationController
       # GET /items
+      ## accepts a `item_list_id` query parameter to filter for items belonging to a particular list
       def index
-        @items = Item.order(created_at: :desc)
+        @items = if params[:item_list_id]
+                   Item.where(item_list_id: params[:item_list_id]).order(created_at: :desc)
+                 else
+                   Item.order(created_at: :desc)
+                 end
         render json: @items, status: 200
       end
 
       # GET /items/:id
       def show
         @item = Item.find(params[:id])
-        render json: @item
+        render json: @item, status: 200
       end
 
       # POST /items
       def create
-        Item.transaction do
-          @item = Item.new(item_params)
-          @event = Event.new(action: 'create_item', item: params[:name])
-          @item.save!
-          @event.save!
-        end
+        @item = Item.create! item_params
         render json: @item, status: 200
-      rescue ActiveRecord::RecordInvalid => e
-        render json: { error: 'Unable to create item' }, status: 400
       end
 
-      # PUT /items/:id
+      # PUT/PATCH /items/:id
       def update
-        Item.transaction do
-          @item = Item.find(params[:id])
-          if @item
-            @item.update(item_params)
-            new_qty = params[:quantity].to_i
-            if new_qty > @item.quantity
-              # Increment
-              @event = Event.new(action: 'increment_item', item: @item.name)
-            else
-              # Decrement
-              @event = Event.new(action: 'decrement_item', item: @item.name)
-              @event.save!
-            end
-            render json: @item, status: 200
-          else
-            render json: { error: 'Not found' }, status: 404
-          end
-        end
-      rescue ActiveRecord::RecordInvalid => e
-        render json: { error: 'Unable to update item' }, status: 400
+        @item = Item.find(params[:id])
+        @item.update! item_params
+        render json: @item, status: 200
       end
 
       # DELETE /items/:id
       def destroy
         @item = Item.find(params[:id])
-        if @item
-          Item.transaction do
-            @event = Event.new(action: 'delete_item', item: @item.name)
-            @event.save!
-            @item.destroy
-            render json: { message: 'Item deleted' }, status: 200
-          end
-        else
-          render json: { error: 'Not found' }, status: 404
-        end
-      rescue ActiveRecord::RecordInvalid => e
-        render json: { error: 'Unable to delete item' }, status: 400
+        @item.destroy!
+        render json: { message: 'Item deleted' }, status: 200
       end
 
       private
 
       def item_params
-        params.permit(:name, :description, :quantity, :id)
+        params.permit(:name, :description, :quantity, :id, :item_list_id)
       end
     end
   end

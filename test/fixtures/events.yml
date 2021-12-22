@@ -1,9 +1,5 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  action: MyString
-  item: MyString
-
-two:
-  action: MyString
-  item: MyString
+create_item":
+  action: create_item
+  data: '{"item": "Klondike Bars", "list": "Grocery"}'

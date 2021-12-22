@@ -3,7 +3,14 @@
 one:
   name: Klondike bars
   quantity: 1
+  item_list: grocery
 
 two:
   name: Cokes (12 pack)
   quantity: 1
+  item_list: grocery
+
+three:
+  name: Hammer
+  quantity: 1
+  item_list: hardware

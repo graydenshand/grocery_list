@@ -9,11 +9,16 @@
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
     <%= stylesheet_pack_tag "application", "data-turbo-track": "reload" %>
+    <%= javascript_tag "window._token = '#{form_authenticity_token}'" %>
  </head>
 
-  <body class="bg-gray-50">
-    <div id="root" class="max-w-screen-md mx-auto min-h-screen px-5">
-      <%= yield %>
+  <body class="bg-gray-300">
+    <div class="bg-gray-50 max-w-screen-md mx-auto relative min-h-screen">
+      <%= image_tag "christmas_frame_top.png", class: "w-full" %>
+      <div id="root">
+        <%= yield %>
+      </div>
+      <%= image_tag "christmas_frame_bottom.png", class: "w-full absolute bottom-0" %>
     </div>
   </body>
 </html>
